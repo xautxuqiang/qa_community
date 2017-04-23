@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block script %}
+<script>
+'use strict';
+function refresh(){
+    var validate_image = document.getElementById('vcode');
+    validate_image.src= "/accounts/identifying_code/"+Math.round(Math.random()*10000)+"/";
+}
+</script>
+{% endblock %}
+
+{% block title %}注册-QA问答社区{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+	<form method="post" action=".">
+		<!--{% if form.errors %}
+			{% include "users/partials/errors.html" %}
+		{% endif %}-->
+		{% csrf_token %}
+		<!--{% for field in form %}
+			{% include "users/partials/field.html" %}
+		{% endfor %}-->
+		{% bootstrap_form form %}
+        <div class="form-group identifying_code"><label class="control-label" for="id_identifying_code">验证码</label><br><input style="width:50%;display:inline;" class="form-control" id="id_identifying_code" maxlength="4" name="identifying_code" placeholder="验证码" title="" type="text" required /><img id="vcode" onclick="refresh()" src="{% url 'validate' 1 %}" data-toggle="tooltip" title="看不清楚?换一张" alt="验证码"></div>
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">{% bootstrap_icon "star" %}注册
+</button>
+        {% endbuttons %}
+	</form>
+</div>
+{% endblock %}

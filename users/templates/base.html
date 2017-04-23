@@ -1,0 +1,47 @@
+{% load i18n staticfiles %}<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="{% static 'images/QA.jpg' %}" type="image/x-icon"/>
+	<link rel="icon" href="{% static 'images/QA.jpg' %}" type="image/x-icon"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	{% bootstrap_css %}
+	<!--加入jquery=1是为了实现可以关闭messages信息,详情见django-bootstrap3-->
+	{% bootstrap_javascript jquery=1 %}	
+	{% block script %}{% endblock %}
+</head>
+<body>
+<!--
+<div class="header navbar">
+	<div class="container">
+		<a class="navbar-brand" href="/">Django Users</a>
+	</div>
+</div>-->
+<div class="container">
+	<div class="qa-image-center">
+	<img class="qa-image" src="{% static "images/QA.jpg" %}" alt="QA-Image" />
+	</div>
+	<div class="row">
+	<div class="col-xs-4 col-md-4">
+	</div>
+	<div class="col-xs-4 col-md-4">
+	<div class="page-header" align="center">
+    	<label style="font-size:17px;padding-right:6%;"><a href="{% url 'users_register' %}">注册</a></label><label style="font-size:17px;"><a href="{% url 'users_login' %}">登录</a></label>
+	</div>
+	{% bootstrap_messages %}
+	{% block content %}
+	{% endblock %}
+	</div>
+	</div>
+</div>
+<div class="footer">
+<h5><b>@Django Project By Kevin Xu</b></h5>
+</div>
+</body>
+</html>

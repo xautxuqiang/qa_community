@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% trans "感谢您注册我们的账号--" %} {{ site.name }}
+{% trans "激活当前账号,请点击下面的链接:" %}
+
+{{ protocol }}://{{ site.domain }}{% url 'users_activate' uid token %}
+
+{% blocktrans %}该链接在{{ expiration_days }}内有效.{% endblocktrans %}
+
+{% trans "--QA问答社区" %}
